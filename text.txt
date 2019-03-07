@@ -1,0 +1,1 @@
+{"zebra": 0.8361021876335144, "hartebeest": 0.0013479290064424276, "prairie chicken, prairie grouse, prairie fowl": 0.0012656053295359015, "ostrich, Struthio camelus": 0.0011546800378710032, "impala, Aepyceros melampus": 0.0009174044826067984}
