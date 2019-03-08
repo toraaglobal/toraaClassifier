@@ -31,8 +31,10 @@ def classify_page():
         url = request.args.get('homepage')
         #print(url)
     except Exception as e:
-        retJson= app.logger.info('Invalid image URL')
-        return render_template('classify.html', error='Invalid URL', retJson=str(e)),301
+        #retJson= app.logger.info('Invalid image URL')
+        #return render_template('classify.html', error=None, retJson=retJson),301
+        return redirect(url_for('home_page'))
+    
     #get image
     r = requests.get(url)
     retJson = {}
