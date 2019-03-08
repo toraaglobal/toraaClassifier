@@ -32,21 +32,23 @@ def classify_page():
         #print(url)
     except Exception as e:
         #retJson= app.logger.info('Invalid image URL')
-        #return render_template('classify.html', error=None, retJson=retJson),301
-        return redirect(url_for('home_page'))
+        return render_template('classify.html',error= 'No Input detected', retJson='No request')
     
     #get image
-    r = requests.get(url)
-    retJson = {}
-    with open('temp.jpg', 'wb') as f:
-        f.write(r.content)
-        proc =  subprocess.Popen('python classify_image.py --model_dir=. --image_file=./temp.jpg', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
-        ret = proc.communicate()[0]
-        proc.wait()
-        with open('text.txt') as g:
-            retJson = json.load(g)
-        return render_template('classify.html', retJson=retJson)
-    return render_template('classify.html', error='Invalid URL', retJson='No Request' )
+    try:
+        r = requests.get(url)
+        retJson = {}
+        with open('temp.jpg', 'wb') as f:
+            f.write(r.content)
+            proc =  subprocess.Popen('python classify_image.py --model_dir=. --image_file=./temp.jpg', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+            ret = proc.communicate()[0]
+            proc.wait()
+            with open('text.txt') as g:
+                retJson = json.load(g)
+            return render_template('classify.html', retJson=retJson)
+    except:
+
+        return render_template('classify.html', error='Invalid URL', retJson='Invalid Image URL' )
 
             
 
