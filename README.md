@@ -8,4 +8,4 @@ Using inception to classify image using the image URL.
 * change directory to the root folder
 * run the app `python app.y` and visit `localhost:5000` for the UI.
 
-![](./docs/ui.png)
+![](./docs/ui.gif)
