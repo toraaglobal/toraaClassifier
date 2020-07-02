@@ -153,6 +153,8 @@ def run_inference_on_image(image):
     node_lookup = NodeLookup()
 
     top_k = predictions.argsort()[-FLAGS.num_top_predictions:][::-1]
+    
+    ### here is where i modified, to store return contentnt in text file 
     retJson = {}  #added to store what will be dump to text.txt
     for node_id in top_k:
       human_string = node_lookup.id_to_string(node_id)
@@ -160,7 +162,7 @@ def run_inference_on_image(image):
       retJson[human_string]=score.item()
       print('%s (score = %.5f)' % (human_string, score))
     print(retJson)
-    with open("text.txt", 'w') as f:    #added text.txt
+    with open("./docs/text.txt", 'w') as f:    #added text.txt
         f.write(json.dumps(retJson))
 
 

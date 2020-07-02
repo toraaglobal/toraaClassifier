@@ -40,11 +40,12 @@ def classify_page():
         retJson = {}
         with open('temp.jpg', 'wb') as f:
             f.write(r.content)
-            proc =  subprocess.Popen('python classify_image.py --model_dir=. --image_file=./temp.jpg', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+            proc =  subprocess.Popen('python ./docs/classify_image.py --model_dir=./docs/ --image_file=./temp.jpg', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
             ret = proc.communicate()[0]
             proc.wait()
-            with open('text.txt') as g:
+            with open('./docs/text.txt') as g:
                 retJson = json.load(g)
+                
             return render_template('classify.html', retJson=retJson)
     except:
 
